@@ -58,8 +58,8 @@ public class PositionService {
                 Posicao bean = new Posicao(fields[0],
                         convertDateTime(fields[1]),
                         Integer.valueOf(fields[2]),
-                        Double.valueOf(fields[3]),
                         Double.valueOf(fields[4]),
+                        Double.valueOf(fields[3]),
                         Boolean.valueOf(fields[5]));
                 repository.save(bean);
                 //System.out.println(bean);
