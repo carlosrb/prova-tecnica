@@ -1,0 +1,6 @@
+*nb-configuration.xml
+*/target/*
+*/node_modules/*
+prova-tecnica-web/src/main/web/dist/*
+prova-tecnica-web/src/main/web/node/*
+prova-tecnica-web/src/main/web/e2e/*

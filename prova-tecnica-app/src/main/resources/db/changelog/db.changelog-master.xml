@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    
+    <changeSet id="ponto-create-table" author="carlos">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists schemaName="public" tableName="ponto" />
+            </not>
+        </preConditions>
+        
+        <createTable tableName="ponto">
+            <column name="nome" type="VARCHAR(80)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="raio" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="longitude" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="latitude" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <loadData file="db/changelog/base_pois_def.csv" tableName="ponto"/>
+
+    </changeSet>
+    
+    <changeSet id="posicao-create-table" author="carlos">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists schemaName="public" tableName="posicao" />
+            </not>
+        </preConditions>
+        
+        <createTable tableName="posicao">
+            <column name="placa" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_posicao" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="velocidade" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="longitude" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="latitude" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ignicao" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+    </changeSet>
+       
+</databaseChangeLog>
