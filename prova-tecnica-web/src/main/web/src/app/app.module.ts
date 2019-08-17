@@ -5,6 +5,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { PosicaoComponent } from './posicao/posicao.component';
 import { PontoComponent } from './ponto/ponto.component';
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -14,7 +16,9 @@ import { PontoComponent } from './ponto/ponto.component';
     ],
     imports: [
         BrowserModule,
-        HttpClientModule
+        HttpClientModule,
+        AngularDateTimePickerModule,
+        NgbModule
     ],
     providers: [],
     bootstrap: [AppComponent]
