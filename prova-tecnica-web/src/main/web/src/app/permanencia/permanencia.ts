@@ -18,6 +18,6 @@ export class Permanencia {
     }
 
     getTempo(): Duration {
-        return moment.duration(this.getChegada().diff(this.getSaida()))
+        return moment.duration(this.getSaida().diff(this.getChegada()))
     }
 }

@@ -1,37 +1,55 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
-    <div class="row">
-        <div class="col-sm-2">Placa</div>
-        <div class="col-sm-2">
-            <select id="selectPlaca" [(ngModel)]="placa">
-                <option *ngFor="let placa of placas">
-                    {{placa}}
-                </option>
-            </select>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">Filtros</a>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="row">
+                    <label class="col-sm-12">Placa</label>
+                    <select class="col-sm-12" id="selectPlaca" [(ngModel)]="placa">
+                        <option *ngFor="let placa of placas">
+                            {{placa}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <label class="col-sm-12">Data Inicial</label>
+                    <div class="col-sm-12">
+                        <angular2-date-picker (onDateSelect)="onDateSelect($event, 'startDate')" [(ngModel)]="startDate"
+                            [settings]="settings"></angular2-date-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <label class="col-sm-12">Data Final</label>
+                    <div class="col-sm-12">
+                        <angular2-date-picker (onDateSelect)="onDateSelect($event, 'endDate')" [(ngModel)]="endDate"
+                            [settings]="settings"></angular2-date-picker>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-2">Data Inicial</div>
-        <div class="col-sm-2">
-            <angular2-date-picker (onDateSelect)="onDateSelect($event, 'startDate')" [(ngModel)]="startDate"
-                [settings]="settings"></angular2-date-picker>
-        </div>
-        <div class="col-sm-2">Data Final</div>
-        <div class="col-sm-2">
-            <angular2-date-picker (onDateSelect)="onDateSelect($event, 'endDate')" [(ngModel)]="endDate"
-                [settings]="settings"></angular2-date-picker>
-        </div>
-    </div>
+    </nav>
     <div class="row">
         <div class="col-sm-12">
             <div *ngFor="let pp of pontoPermanencia">
-                <div *ngIf="pp.permanencias.length > 0">
-                    <div>{{ pp.ponto.nome }}</div>
+                <div style="margin-top: 2em" *ngIf="pp.permanencias.length > 0">
                     <table class="table table-striped">
                         <thead>
+                            <tr>
+                                <th scope="col" colspan="3">{{ pp.ponto.nome }}</th>
+                                <th scope="col" colspan="2">Tempo</th>
+                            </tr>
                             <tr>
                                 <th scope="col">Placa</th>
                                 <th scope="col">Chegada</th>
                                 <th scope="col">Saida</th>
-                                <th scope="col">Tempo</th>
+                                <th scope="col">Aproximado</th>
+                                <th scope="col">Exato</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,6 +58,7 @@
                                 <td>{{ permanencia.getChegada().format('DD/MM/YYYY HH:mm:ss') }}</td>
                                 <td>{{ permanencia.getSaida().format('DD/MM/YYYY HH:mm:ss') }}</td>
                                 <td>{{ permanencia.getTempo().locale('pt').humanize() }}</td>
+                                <td>{{ permanencia.getTempo().toISOString() }} </td>
                             </tr>
                         </tbody>
                     </table>
